@@ -1,0 +1,47 @@
+<table
+  mat-table
+  [dataSource]="products"
+  class="mat-elevation-z8"
+  class="products-table"
+>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>id</th>
+    <td mat-cell *matCellDef="let products">{{ products.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Titulo</th>
+    <td mat-cell *matCellDef="let products">{{ products.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Precio</th>
+    <td mat-cell *matCellDef="let products">{{ products.price }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let products">
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['edit', products.id]"
+      >
+        Editar
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="eliminarProducto(products.id)"
+      >
+        Eliminar
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<div class="product-button">
+  <a mat-raised-button routerLink="/admin/products/create">Crear Producto</a>
+</div>
